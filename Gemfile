@@ -8,6 +8,7 @@ gem "pg"
 gem "bcrypt"
 gem "bootsnap", require: false
 gem "decent_exposure"
+gem "devise"
 gem "graphql"
 # gem "health_check"
 gem "interactor"
