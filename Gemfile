@@ -9,6 +9,7 @@ gem "bcrypt"
 gem "bootsnap", require: false
 gem "decent_exposure"
 gem "devise"
+gem "devise-jwt"
 gem "graphql"
 # gem "health_check"
 gem "interactor"
