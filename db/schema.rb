@@ -31,10 +31,10 @@ ActiveRecord::Schema.define(version: 2020_03_19_163742) do
     t.string "jti", null: false
     t.string "aud"
     t.datetime "exp", null: false
-    t.bigint "users_id", null: false
+    t.bigint "user_id", null: false
     t.index ["jti"], name: "index_whitelisted_jwts_on_jti", unique: true
-    t.index ["users_id"], name: "index_whitelisted_jwts_on_users_id"
+    t.index ["user_id"], name: "index_whitelisted_jwts_on_user_id"
   end
 
-  add_foreign_key "whitelisted_jwts", "users", column: "users_id", on_delete: :cascade
+  add_foreign_key "whitelisted_jwts", "users", on_delete: :cascade
 end
