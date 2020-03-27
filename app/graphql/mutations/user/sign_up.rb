@@ -10,16 +10,27 @@ module Mutations
       type Types::UserType
 
       def resolve(**params)
-        # create user
-        # generate JWT token
-        # return token to user
-        # ::User.create!(email: email, password: password)
+        result = register_user(params)
+
+        if result.success?
+          result.user
+        else
+          execution_error(message: result.error)
+        end
       end
 
       private
 
-      def sanitize_params
+      def execution_error(message: nil, status: 422, code: :unprocessable_entity)
+        GraphQL::ExecutionError.new(message, options: { status: status, code: code })
+      end
 
+      def register_user(params)
+        Users::Register.call(user: build_user, user_params: params)
+      end
+
+      def build_user
+        ::User.new
       end
     end
   end

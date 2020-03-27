@@ -6,10 +6,10 @@ describe Users::SaveRecord do
   include_context :interactor
 
   let(:initial_context) do
-     {
-       user: user,
-       user_params: user_params
-      }
+    {
+      user: user,
+      user_params: user_params
+    }
   end
 
   let(:user_params) do
