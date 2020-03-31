@@ -9,10 +9,9 @@ gem "bcrypt"
 gem "bootsnap", require: false
 gem "decent_exposure"
 gem "devise"
+gem "devise-jwt"
 gem "graphql"
-# gem "health_check"
 gem "interactor"
-# gem "jwt"
 gem "puma"
 
 group :development do
@@ -22,13 +21,15 @@ group :development do
 end
 
 group :development, :test do
+  gem "byebug"
+  gem "dotenv-rails"
   gem "factory_bot_rails"
   gem "ffaker"
-  gem "byebug"
   gem "rspec-rails"
 end
 
 group :test do
   gem "database_cleaner-active_record"
   gem "simplecov", require: false
+  gem "timecop"
 end
