@@ -6,6 +6,7 @@ module Users
     include TransactionalInteractor
 
     organize Users::SaveRecord,
-      Users::GenerateToken
+      Users::GenerateToken,
+      Users::SaveToken
   end
 end

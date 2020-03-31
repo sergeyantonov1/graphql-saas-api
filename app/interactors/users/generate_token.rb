@@ -19,21 +19,25 @@ module Users
     def generate_token
       JWT.encode(payload, hmac_secret, CRYPTOGRAPHIC_ALGORITHM)
     rescue => error
-      context.fail!(error: error.message)
+      context.fail!(error: error)
     end
 
     def payload
-      @payload ||= { sub: user_id, jti: jwt_id, iat: issued_at, exp: expiration_time }
+      {
+        sub: user_id,
+        jti: jwt_id,
+        iat: issued_at,
+        exp: expiration_time
+      }
+    end
+
+    def jwt_id
+      @jwt_id ||=
+        Digest::MD5.hexdigest([hmac_secret, issued_at].join(":").to_s)
     end
 
     def hmac_secret
       ENV["DEVISE_JWT_SECRET_KEY"]
-    end
-
-    def jwt_id
-      Digest::MD5.hexdigest(
-        [hmac_secret, issued_at].join(":").to_s
-      )
     end
 
     def issued_at
@@ -41,11 +45,11 @@ module Users
     end
 
     def expiration_time
-      jwt_expiration_interval.day.since.to_i
+      @expiration_time ||= jwt_expiration_interval.day.since.to_i
     end
 
     def jwt_expiration_interval
-      ENV.fetch("JWT_EXPIRATION_DAYS_INTERVAL", 1)
+      ENV.fetch("JWT_EXPIRATION_DAYS_INTERVAL", 1).to_i
     end
   end
 end
