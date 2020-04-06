@@ -7,8 +7,14 @@ AllCops:
     - bin/**/*
     - db/**/*
 
+Style/Documentation:
+  Enabled: false
+
 Style/StringLiterals:
   EnforcedStyle: double_quotes
+
+Layout/ArgumentAlignment:
+  EnforcedStyle: with_fixed_indentation
 
 Layout/LineLength:
   Max: 120
