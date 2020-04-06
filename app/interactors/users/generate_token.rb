@@ -7,8 +7,6 @@ module Users
     delegate :user, to: :context
     delegate :id, to: :user, prefix: true
 
-    CRYPTOGRAPHIC_ALGORITHM = "HS256"
-
     def call
       context.token = generate_token
       context.payload = payload
@@ -17,7 +15,7 @@ module Users
     private
 
     def generate_token
-      JWT.encode(payload, hmac_secret, CRYPTOGRAPHIC_ALGORITHM)
+      JWT.encode(payload, hmac_secret, hmac_algorithm)
     rescue StandardError => e
       context.fail!(error: e)
     end
@@ -37,7 +35,11 @@ module Users
     end
 
     def hmac_secret
-      ENV["DEVISE_JWT_SECRET_KEY"]
+      ENV["HMAC_SECRET"]
+    end
+
+    def hmac_algorithm
+      ENV["HMAC_ALGORITHM"]
     end
 
     def issued_at

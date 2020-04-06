@@ -298,6 +298,6 @@ Devise.setup do |config|
   # config.sign_in_after_change_password = true
 
   config.jwt do |jwt|
-    jwt.secret = ENV["DEVISE_JWT_SECRET_KEY"]
+    jwt.secret = ENV["HMAC_SECRET"]
   end
 end
