@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
 class GraphqlController < ApplicationController
   def execute
     render json: GraphqlSaasApiSchema.execute(query, schema_options)
-  rescue => e
+  rescue StandardError => e
     raise e unless Rails.env.development?
+
     handle_error_in_development e
   end
 
@@ -26,7 +29,7 @@ class GraphqlController < ApplicationController
 
   def context
     {
-       # current_user: current_user,
+      # current_user: current_user,
     }
   end
 
@@ -34,28 +37,23 @@ class GraphqlController < ApplicationController
     params[:operationName]
   end
 
-  # Handle form data, JSON body, or a blank value
   def ensure_hash(ambiguous_param)
     case ambiguous_param
     when String
-      if ambiguous_param.present?
-        ensure_hash(JSON.parse(ambiguous_param))
-      else
-        {}
-      end
-    when Hash, ActionController::Parameters
-      ambiguous_param
-    when nil
-      {}
+      ambiguous_param.present? ? ensure_hash(JSON.parse(ambiguous_param)) : {}
+    when Hash, ActionController::Parameters then ambiguous_param
+    when nil then {}
     else
       raise ArgumentError, "Unexpected parameter: #{ambiguous_param}"
     end
   end
 
-  def handle_error_in_development(e)
-    logger.error e.message
-    logger.error e.backtrace.join("\n")
+  def handle_error_in_development(error)
+    logger.error error.message
+    logger.error error.backtrace.join("\n")
 
-    render json: { error: { message: e.message, backtrace: e.backtrace }, data: {} }, status: 500
+    response_body = { error: { message: error.message, backtrace: error.backtrace }, data: {} }
+
+    render json: response_body, status: 500
   end
 end

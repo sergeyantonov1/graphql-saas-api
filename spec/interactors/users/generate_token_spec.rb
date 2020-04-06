@@ -25,8 +25,8 @@ describe Users::GenerateToken do
     {
       sub: 123_123,
       jti: "f88640633986b9d2df3bcfb745923cec",
-      iat: 1561402800,
-      exp: 1561489200
+      iat: 1_561_402_800,
+      exp: 1_561_489_200
     }
   end
 

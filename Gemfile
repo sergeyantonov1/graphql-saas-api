@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
 
 ruby "2.6.3"
 
-gem "rails", "6.0.2.1"
 gem "pg"
+gem "rails", "6.0.2.1"
 
 gem "bcrypt"
 gem "bootsnap", require: false
@@ -13,6 +15,7 @@ gem "devise-jwt"
 gem "graphql"
 gem "interactor"
 gem "puma"
+gem "rubocop"
 
 group :development do
   gem "listen"

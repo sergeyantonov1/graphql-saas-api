@@ -4,7 +4,7 @@ module Resolvers
   class UserItem < Resolvers::Base
     type Types::UserType, null: false
 
-    def resolve(**options)
+    def resolve(**_options)
       User.first
     end
   end
