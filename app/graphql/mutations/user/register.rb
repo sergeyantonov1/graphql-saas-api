@@ -2,7 +2,7 @@
 
 module Mutations
   module User
-    class SignUp < BaseMutation
+    class Register < BaseMutation
       argument :email, String, required: true
       argument :password, String, required: true
       argument :password_confirmation, String, required: true
