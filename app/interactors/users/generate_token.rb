@@ -17,7 +17,7 @@ module Users
     def generate_token
       JWT.encode(payload, hmac_secret, hmac_algorithm)
     rescue StandardError => e
-      context.fail!(error: e)
+      context.fail!(error: e.message)
     end
 
     def payload
@@ -47,7 +47,7 @@ module Users
     end
 
     def expiration_time
-      @expiration_time ||= jwt_expiration_interval.day.since.to_i
+      @expiration_time ||= jwt_expiration_interval.minute.since.to_i
     end
 
     def jwt_expiration_interval
