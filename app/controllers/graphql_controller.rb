@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
 class GraphqlController < ApplicationController
   def execute
     render json: GraphqlSaasApiSchema.execute(query, schema_options)
-  rescue => e
+  rescue StandardError => e
     raise e unless Rails.env.development?
+
     handle_error_in_development e
   end
 
@@ -26,7 +29,7 @@ class GraphqlController < ApplicationController
 
   def context
     {
-       # current_user: current_user,
+      # current_user: current_user,
     }
   end
 

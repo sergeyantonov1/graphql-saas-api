@@ -18,8 +18,8 @@ module Users
 
     def generate_token
       JWT.encode(payload, hmac_secret, CRYPTOGRAPHIC_ALGORITHM)
-    rescue => error
-      context.fail!(error: error)
+    rescue StandardError => e
+      context.fail!(error: e)
     end
 
     def payload

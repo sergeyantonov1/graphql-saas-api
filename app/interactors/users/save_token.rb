@@ -10,7 +10,7 @@ module Users
 
     def call
       save_whitelisted_jwt!
-    rescue
+    rescue StandardError
       context.fail!(error: WHITELISTED_JWT_ERROR_MESSAGE)
     end
 
@@ -21,4 +21,3 @@ module Users
     end
   end
 end
-

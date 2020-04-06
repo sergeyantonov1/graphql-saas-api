@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+set -e
+
+bin/rubocop
+bin/scss-lint
+bin/slim-lint app/views
+bin/brakeman --quiet --skip-libs --exit-on-warn --skip-files "config/initializers/cookies_serializer.rb"
+bin/bundle-audit update
+bin/bundle-audit check --ignore CVE-2020-5267
