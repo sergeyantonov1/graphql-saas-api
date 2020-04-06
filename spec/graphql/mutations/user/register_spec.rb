@@ -19,6 +19,10 @@ describe Mutations::User::Register do
     GRAPHQL
   end
 
+  before do
+    allow(JWT).to receive(:encode).and_return("some_token")
+  end
+
   it_behaves_like :graphql_request, "register user" do
     let(:fixture_path) { "json/graphql/mutations/user/register.json" }
   end
