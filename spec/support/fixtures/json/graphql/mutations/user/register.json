@@ -1,7 +1,10 @@
 {
   "data": {
-    "register": {
-      "token": "some_token"
+    "registerUser": {
+      "token": "some_token",
+      "user": {
+        "email": "user@example.com"
+      }
     }
   }
 }
