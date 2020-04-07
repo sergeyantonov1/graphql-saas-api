@@ -33,7 +33,7 @@ describe Users::AuthenticateByToken do
   context "when JWT token is invalid" do
     let(:decode_error) { "Decode error" }
 
-    let(:error_message) { "Decode error" }
+    let(:error_message) { "Unauthorized error" }
 
     before do
       allow(JWT).to receive(:decode).and_raise(decode_error)

@@ -2,11 +2,11 @@
 
 require "rails_helper"
 
-describe Mutations::User::Register do
+describe Mutations::RegisterUser do
   let(:query) do
     <<-GRAPHQL
       mutation {
-        register(
+        registerUser(
           input: {
             email: "user@example.com",
             password: "password",
@@ -14,6 +14,9 @@ describe Mutations::User::Register do
           }
         ) {
           token
+          user {
+            email
+          }
         }
       }
     GRAPHQL
