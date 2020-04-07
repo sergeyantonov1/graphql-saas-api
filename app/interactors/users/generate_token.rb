@@ -47,7 +47,7 @@ module Users
     end
 
     def expiration_time
-      @expiration_time ||= jwt_expiration_interval.minute.since.to_i
+      @expiration_time ||= jwt_expiration_interval.day.since.to_i
     end
 
     def jwt_expiration_interval

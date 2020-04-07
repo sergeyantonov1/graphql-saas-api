@@ -27,7 +27,7 @@ module Users
     end
 
     def decode_options
-      @decoded_options ||= {
+      {
         algorithm: ENV["HMAC_ALGORITHM"],
         verify_jti: true
       }
