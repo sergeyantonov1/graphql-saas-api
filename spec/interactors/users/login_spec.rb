@@ -2,11 +2,11 @@
 
 require "rails_helper"
 
-describe Users::Register do
+describe Users::Login do
   describe ".organized" do
     let(:expected_interactors) do
       [
-        Users::SaveRecord,
+        Users::Authenticate,
         Users::GenerateToken
       ]
     end

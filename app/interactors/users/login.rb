@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 module Users
-  class Register
+  class Login
     include Interactor::Organizer
     include TransactionalInteractor
 
-    organize Users::SaveRecord,
+    organize Users::Authenticate,
       Users::GenerateToken
   end
 end
