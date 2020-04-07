@@ -2,7 +2,6 @@
 
 module AuthenticableUser
   extend ActiveSupport::Concern
-  include ExecutionErrorResponder
 
   private
 

@@ -6,24 +6,22 @@ module Users
 
     delegate :auth_token, to: :context
 
-    USER_NOT_FOUND_MESSAGE = "We could not authenticate the user"
+    UNATHORIZED_ERROR = "Unauthorized error"
 
     def call
-      context.current_user = authenticate_user!
+      context.current_user = current_user!
+    rescue StandardError
+      context.fail!(error: UNATHORIZED_ERROR)
     end
 
     private
 
-    def authenticate_user!
+    def current_user!
       User.find(decoded_token[0]["sub"])
-    rescue ActiveRecord::RecordNotFound
-      context.fail!(error: USER_NOT_FOUND_MESSAGE)
     end
 
     def decoded_token
       JWT.decode(auth_token, hmac_secret, true, decode_options)
-    rescue StandardError => e
-      context.fail!(error: e.message)
     end
 
     def decode_options
