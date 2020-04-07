@@ -30,8 +30,7 @@ module Users
     end
 
     def jwt_id
-      @jwt_id ||=
-        Digest::MD5.hexdigest([hmac_secret, issued_at].join(":").to_s)
+      @jwt_id ||= Digest::MD5.hexdigest([hmac_secret, issued_at].join(":").to_s)
     end
 
     def hmac_secret
