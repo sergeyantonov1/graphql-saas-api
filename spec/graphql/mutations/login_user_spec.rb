@@ -31,7 +31,7 @@ describe Mutations::LoginUser do
     let(:email) { "user@example.com" }
 
     it_behaves_like :graphql_request, "login user" do
-      let(:fixture_path) { "json/graphql/mutations/user/login_with_valid_credentials.json" }
+      let(:fixture_path) { "json/graphql/mutations/login_user_with_valid_credentials.json" }
     end
   end
 
@@ -39,7 +39,7 @@ describe Mutations::LoginUser do
     let(:email) { "some_user@example.com" }
 
     it_behaves_like :graphql_request, "login user" do
-      let(:fixture_path) { "json/graphql/mutations/user/login_with_invalid_credentials.json" }
+      let(:fixture_path) { "json/graphql/mutations/login_user_with_invalid_credentials.json" }
     end
   end
 end

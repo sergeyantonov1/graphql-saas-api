@@ -5,7 +5,7 @@ module Mutations
     argument :email, String, required: true
     argument :password, String, required: true
 
-    type Types::LoginUserPayloadType
+    type Types::Payloads::LoginUserType
 
     def resolve(email:, password:)
       result = login_user(email, password)

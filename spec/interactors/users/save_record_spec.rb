@@ -20,25 +20,35 @@ describe Users::SaveRecord do
     }
   end
 
-  let(:saved_user) { User.last }
-
   context "when new user" do
     let(:user) { build :user }
+
+    let(:expected_attributes) do
+      {
+        email: "user@example.com"
+      }
+    end
 
     it "creates user" do
       expect { executed_context }.to change(User, :count).by(1)
 
-      expect(saved_user.email).to eq("user@example.com")
+      expect(User.last).to have_attributes(expected_attributes)
     end
   end
 
   context "when existed user" do
     let!(:user) { create :user }
 
+    let(:expected_attributes) do
+      {
+        email: "user@example.com"
+      }
+    end
+
     it "updates user" do
       expect { executed_context }.not_to change(User, :count)
 
-      expect(saved_user.email).to eq("user@example.com")
+      expect(User.last).to have_attributes(expected_attributes)
     end
   end
 

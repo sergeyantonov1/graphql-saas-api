@@ -6,7 +6,7 @@ module Mutations
     argument :password, String, required: true
     argument :password_confirmation, String, required: true
 
-    type Types::RegisterUserPayloadType
+    type Types::Payloads::RegisterUserType
 
     def resolve(**params)
       result = register_user(params)

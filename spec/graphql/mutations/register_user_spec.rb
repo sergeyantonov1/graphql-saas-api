@@ -27,6 +27,6 @@ describe Mutations::RegisterUser do
   end
 
   it_behaves_like :graphql_request, "register user" do
-    let(:fixture_path) { "json/graphql/mutations/user/register.json" }
+    let(:fixture_path) { "json/graphql/mutations/register_user.json" }
   end
 end

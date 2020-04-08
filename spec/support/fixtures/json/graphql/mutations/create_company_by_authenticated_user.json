@@ -1,0 +1,12 @@
+{
+  "data": {
+    "createCompany": {
+      "company": {
+        "name": "Company Name",
+        "user": {
+          "email": "user@example.com"
+        }
+      }
+    }
+  }
+}
