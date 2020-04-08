@@ -4,9 +4,7 @@ module AuthenticableUser
   private
 
   def current_user
-    @current_user ||= begin
-      User.find_by(id: payload_data["sub"]) if token && decoded_token
-    end
+    @current_user ||= User.find_by(id: payload_data["sub"]) if token && decoded_token
   end
 
   def token

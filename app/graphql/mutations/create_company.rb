@@ -2,7 +2,7 @@
 
 module Mutations
   class CreateCompany < BaseMutation
-    include AuthorizableUser
+    include AuthenticableApiUser
 
     argument :name, String, required: true
 

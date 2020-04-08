@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module AuthorizableUser
+module AuthenticableApiUser
   extend ActiveSupport::Concern
 
   private

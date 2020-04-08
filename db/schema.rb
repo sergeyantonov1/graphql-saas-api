@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 2020_04_08_125008) do
   create_table "companies", force: :cascade do |t|
     t.string "name", null: false
     t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_companies_on_user_id"
   end
 
