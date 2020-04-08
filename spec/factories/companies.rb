@@ -3,6 +3,5 @@
 FactoryBot.define do
   factory :company do
     name { FFaker::Company.name }
-    user
   end
 end

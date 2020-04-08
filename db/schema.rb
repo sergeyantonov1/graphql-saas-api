@@ -53,5 +53,7 @@ ActiveRecord::Schema.define(version: 2020_04_08_155154) do
     t.index ["user_id"], name: "index_whitelisted_jwts_on_user_id"
   end
 
+  add_foreign_key "memberships", "companies"
+  add_foreign_key "memberships", "users"
   add_foreign_key "whitelisted_jwts", "users", on_delete: :cascade
 end

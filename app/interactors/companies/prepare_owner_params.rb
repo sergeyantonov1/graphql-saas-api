@@ -22,7 +22,6 @@ module Companies
     def membership_params
       {
         role: membership_owner_role,
-        company_id: company_id,
         user_id: user_id
       }
     end
