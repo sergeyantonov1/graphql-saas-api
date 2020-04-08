@@ -15,7 +15,7 @@ module Users
     private
 
     def authenticated?
-      user && user.valid_password?(password)
+      user.present? && user.valid_password?(password)
     end
 
     def find_user

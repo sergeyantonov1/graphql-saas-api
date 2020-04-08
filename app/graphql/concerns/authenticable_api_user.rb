@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module AuthenticableUser
+module AuthenticableApiUser
   extend ActiveSupport::Concern
 
   private
@@ -13,5 +13,9 @@ module AuthenticableUser
 
   def unauthorized_error
     GraphQL::ExecutionError.new("Unauthorized error", options: { status: :unauthorized, code: 401 })
+  end
+
+  def current_user
+    @current_user ||= context[:current_user]
   end
 end
