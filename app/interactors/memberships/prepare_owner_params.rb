@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
-module Companies
+module Memberships
   class PrepareOwnerParams
     include Interactor
 
     delegate :company, :user, to: :context
     delegate :id, :memberships, to: :company, prefix: true
     delegate :id, to: :user, prefix: true
+    delegate :id, to: :company, prefix: true
 
     def call
       context.membership = build_membership
@@ -16,13 +17,14 @@ module Companies
     private
 
     def build_membership
-      company_memberships.build
+      Membership.new
     end
 
     def membership_params
       {
         role: membership_owner_role,
-        user_id: user_id
+        user_id: user_id,
+        company_id: company_id
       }
     end
 

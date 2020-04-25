@@ -20,49 +20,51 @@ describe Users::SaveRecord do
     }
   end
 
-  context "when new user" do
-    let(:user) { build :user }
+  describe ".call" do
+    context "when new user" do
+      let(:user) { build :user }
 
-    let(:expected_attributes) do
-      {
-        email: "user@example.com"
-      }
+      let(:expected_attributes) do
+        {
+          email: "user@example.com"
+        }
+      end
+
+      it "creates user" do
+        expect { executed_context }.to change(User, :count).by(1)
+
+        expect(User.last).to have_attributes(expected_attributes)
+      end
     end
 
-    it "creates user" do
-      expect { executed_context }.to change(User, :count).by(1)
+    context "when existed user" do
+      let!(:user) { create :user }
 
-      expect(User.last).to have_attributes(expected_attributes)
-    end
-  end
+      let(:expected_attributes) do
+        {
+          email: "user@example.com"
+        }
+      end
 
-  context "when existed user" do
-    let!(:user) { create :user }
+      it "updates user" do
+        expect { executed_context }.not_to change(User, :count)
 
-    let(:expected_attributes) do
-      {
-        email: "user@example.com"
-      }
-    end
-
-    it "updates user" do
-      expect { executed_context }.not_to change(User, :count)
-
-      expect(User.last).to have_attributes(expected_attributes)
-    end
-  end
-
-  context "when invalid params" do
-    let(:user) { build :user, email: nil }
-    let(:user_params) do
-      {
-        password: "password",
-        password_confirmation: "password"
-      }
+        expect(User.last).to have_attributes(expected_attributes)
+      end
     end
 
-    let(:error_message) { "Email can't be blank" }
+    context "when invalid params" do
+      let(:user) { build :user, email: nil }
+      let(:user_params) do
+        {
+          password: "password",
+          password_confirmation: "password"
+        }
+      end
 
-    it_behaves_like :failed_interactor
+      let(:error_message) { "Email can't be blank" }
+
+      it_behaves_like :failed_interactor
+    end
   end
 end
