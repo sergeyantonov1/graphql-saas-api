@@ -5,9 +5,8 @@ module Memberships
     include Interactor
 
     delegate :company, :user, to: :context
-    delegate :id, :memberships, to: :company, prefix: true
-    delegate :id, to: :user, prefix: true
     delegate :id, to: :company, prefix: true
+    delegate :id, to: :user, prefix: true
 
     def call
       context.membership = build_membership
