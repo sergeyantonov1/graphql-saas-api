@@ -17,11 +17,15 @@ module Mutations
     private
 
     def create_company(params)
-      Companies::SaveRecord.call(company: build_company, company_params: params)
+      Companies::Create.call(
+        company: build_company,
+        company_params: params,
+        user: current_user
+      )
     end
 
     def build_company
-      current_user.companies.build
+      ::Company.new
     end
   end
 end

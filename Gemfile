@@ -12,6 +12,7 @@ gem "bootsnap", require: false
 gem "decent_exposure"
 gem "devise"
 gem "devise-jwt"
+gem "enumerize"
 gem "graphql"
 gem "interactor"
 gem "puma"

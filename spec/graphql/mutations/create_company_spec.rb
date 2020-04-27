@@ -13,8 +13,11 @@ describe Mutations::CreateCompany do
         ) {
           company {
             name
-            user {
-              email
+            memberships {
+              role
+              user {
+                email
+              }
             }
           }
         }
