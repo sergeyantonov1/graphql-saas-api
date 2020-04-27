@@ -3,9 +3,14 @@
     "createCompany": {
       "company": {
         "name": "Company Name",
-        "user": {
-          "email": "user@example.com"
-        }
+        "memberships": [
+          {
+            "role": "owner",
+            "user": {
+              "email": "user@example.com"
+            }
+          }
+        ]
       }
     }
   }
