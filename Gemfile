@@ -17,6 +17,7 @@ gem "graphql"
 gem "interactor"
 gem "puma"
 gem "rubocop"
+gem "sidekiq"
 
 group :development do
   gem "listen"
