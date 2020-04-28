@@ -4,9 +4,11 @@ module Companies
   class SaveRecord
     include Interactor
 
-    delegate :company, :company_params, to: :context
+    delegate :company_params, to: :context
 
     def call
+      return if company_params.blank?
+
       context.fail!(error: error_message) unless save_company
     end
 
@@ -14,6 +16,10 @@ module Companies
 
     def save_company
       company.update(company_params)
+    end
+
+    def company
+      context.company || Company.new
     end
 
     def error_message

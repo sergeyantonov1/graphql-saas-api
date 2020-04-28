@@ -5,5 +5,6 @@ module Types
     field :register_user, mutation: Mutations::RegisterUser
     field :login_user, mutation: Mutations::LoginUser
     field :create_company, mutation: Mutations::CreateCompany
+    field :accept_invitation, mutation: Mutations::AcceptInvitation
   end
 end
