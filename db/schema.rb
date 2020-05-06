@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_08_155154) do
+ActiveRecord::Schema.define(version: 2020_05_06_123440) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,23 @@ ActiveRecord::Schema.define(version: 2020_04_08_155154) do
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "invitations", force: :cascade do |t|
+    t.string "email", null: false
+    t.integer "invitee_id"
+    t.string "invitee_type"
+    t.integer "invited_by_id", null: false
+    t.integer "invited_by_type", null: false
+    t.string "token", null: false
+    t.datetime "accepted_at"
+    t.bigint "company_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_invitations_on_company_id"
+    t.index ["invited_by_id", "invited_by_type"], name: "index_invitations_on_invited_by_id_and_invited_by_type"
+    t.index ["invitee_id", "invitee_type"], name: "index_invitations_on_invitee_id_and_invitee_type"
+    t.index ["token"], name: "index_invitations_on_token"
   end
 
   create_table "memberships", force: :cascade do |t|
@@ -53,6 +70,7 @@ ActiveRecord::Schema.define(version: 2020_04_08_155154) do
     t.index ["user_id"], name: "index_whitelisted_jwts_on_user_id"
   end
 
+  add_foreign_key "invitations", "companies"
   add_foreign_key "memberships", "companies"
   add_foreign_key "memberships", "users"
   add_foreign_key "whitelisted_jwts", "users", on_delete: :cascade
