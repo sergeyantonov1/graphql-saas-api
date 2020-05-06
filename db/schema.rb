@@ -25,16 +25,17 @@ ActiveRecord::Schema.define(version: 2020_05_06_123440) do
     t.string "email", null: false
     t.integer "invitee_id"
     t.string "invitee_type"
-    t.integer "invited_by_id", null: false
-    t.integer "invited_by_type", null: false
+    t.integer "sender_id", null: false
+    t.string "sender_type", null: false
     t.string "token", null: false
     t.datetime "accepted_at"
     t.bigint "company_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["company_id"], name: "index_invitations_on_company_id"
-    t.index ["invited_by_id", "invited_by_type"], name: "index_invitations_on_invited_by_id_and_invited_by_type"
+    t.index ["email", "company_id"], name: "index_invitations_on_email_and_company_id"
     t.index ["invitee_id", "invitee_type"], name: "index_invitations_on_invitee_id_and_invitee_type"
+    t.index ["sender_id", "sender_type"], name: "index_invitations_on_sender_id_and_sender_type"
     t.index ["token"], name: "index_invitations_on_token"
   end
 
