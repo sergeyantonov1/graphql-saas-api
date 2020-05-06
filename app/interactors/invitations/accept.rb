@@ -7,6 +7,8 @@ module Invitations
 
     organize Invitations::FindRecord,
       Invitations::AcceptInvitation::PrepareParams,
+      Invitations::AcceptInvitation::PrepareUserParams,
+      Invitations::AcceptInvitation::PrepareMembershipParams,
       Users::SaveRecord,
       Memberships::SaveRecord,
       Invitations::SaveRecord

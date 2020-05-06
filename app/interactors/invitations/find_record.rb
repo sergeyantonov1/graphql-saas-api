@@ -15,7 +15,7 @@ module Invitations
     private
 
     def find_invitation
-      Invitation.find_by(token: token, accepted_at: nil) if token.present?
+      Invitation.find_by(token: token, accepted_at: nil)
     end
 
     def error_message

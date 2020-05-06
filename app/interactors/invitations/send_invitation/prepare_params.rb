@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 module Invitations
-  module AcceptInvitation
+  module SendInvitation
     class PrepareParams
       include Interactor
+
+      delegate :invitee, :invited_by, :token, :company, to: :context
 
       def call
         context.invitation_params = build_invitation_params
@@ -13,7 +15,10 @@ module Invitations
 
       def build_invitation_params
         {
-          accepted_at: Time.current
+          invitee: invitee,
+          invited_by: invited_by,
+          token: token,
+          company: company
         }
       end
     end

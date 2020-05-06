@@ -24,7 +24,7 @@ describe Companies::SaveRecord do
 
   describe ".call" do
     context "when new company" do
-      let(:company) { build :company }
+      let(:company) { nil }
 
       let(:expected_attributes) do
         {
@@ -56,8 +56,8 @@ describe Companies::SaveRecord do
     end
 
     context "when invalid params" do
-      let(:company) { build :company, name: nil }
-      let(:company_params) { {} }
+      let(:company) { build :company }
+      let(:company_params) { { name: nil } }
 
       let(:error_message) { "Name can't be blank" }
 
