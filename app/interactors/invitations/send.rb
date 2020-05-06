@@ -5,7 +5,9 @@ class Send
   include TransactionalInteractor
 
   organize Invitations::FindInvitee,
+    Invitations::CheckAvailability,
     Invitations::GenerateToken,
     Invitations::SendInvitation::PrepareParams,
-    Invitations::SaveRecord
+    Invitations::SaveRecord,
+    Invitations::SendEmail
 end

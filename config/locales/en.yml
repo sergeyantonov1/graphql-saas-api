@@ -2,3 +2,4 @@ en:
   errors:
     messages:
       record_not_found: "We can not find %{record_name}"
+      already_invited: "The %{record_name} already invited to %{company_name}"
