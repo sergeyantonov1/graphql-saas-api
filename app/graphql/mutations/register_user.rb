@@ -17,11 +17,7 @@ module Mutations
     private
 
     def register_user(params)
-      Users::Register.call(user: build_user, user_params: params)
-    end
-
-    def build_user
-      ::User.new
+      Users::Register.call(user_params: params)
     end
   end
 end

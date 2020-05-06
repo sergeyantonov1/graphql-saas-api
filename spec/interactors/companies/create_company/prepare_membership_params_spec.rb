@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe Memberships::PrepareOwnerParams do
+describe Companies::CreateCompany::PrepareMembershipParams do
   include_context :interactor
 
   let(:initial_context) do
@@ -26,7 +26,6 @@ describe Memberships::PrepareOwnerParams do
   it "prepares params" do
     interactor.run
 
-    expect(context.membership).to be_new_record
     expect(context.membership_params).to eq(expected_membership_params)
   end
 end
