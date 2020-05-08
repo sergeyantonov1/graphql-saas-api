@@ -19,7 +19,7 @@ module Invitations
     end
 
     def error_message
-      I18n.t("errors.messages.record_not_found", record_name: "invitation")
+      I18n.t("errors.messages.record_not_found", record_name: "Invitation")
     end
   end
 end

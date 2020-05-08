@@ -1,0 +1,19 @@
+{
+  "data": {
+    "sendInvitation": null
+  },
+  "errors": [
+    {
+      "code": "record_not_found",
+      "locations": [
+        {
+          "column": 9,
+          "line": 2
+        }
+      ],
+      "message": "Company not found or accessible",
+      "path": ["sendInvitation"],
+      "status": 404
+    }
+  ]
+}

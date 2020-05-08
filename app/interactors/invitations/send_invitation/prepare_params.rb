@@ -5,7 +5,7 @@ module Invitations
     class PrepareParams
       include Interactor
 
-      delegate :invitee, :sender, :token, :company, to: :context
+      delegate :email, :invitee, :sender, :token, :company, to: :context
 
       def call
         context.invitation_params = build_invitation_params
@@ -15,6 +15,7 @@ module Invitations
 
       def build_invitation_params
         {
+          email: email,
           invitee: invitee,
           sender: sender,
           token: token,

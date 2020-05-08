@@ -18,6 +18,9 @@ Style/PercentLiteralDelimiters:
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 
+Layout/HashAlignment:
+  EnforcedLastArgumentHashStyle: ignore_implicit
+
 Layout/ArgumentAlignment:
   EnforcedStyle: with_fixed_indentation
 

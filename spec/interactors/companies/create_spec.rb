@@ -7,7 +7,7 @@ describe Companies::Create do
     let(:expected_interactors) do
       [
         Companies::SaveRecord,
-        Memberships::PrepareOwnerParams,
+        Companies::CreateCompany::PrepareMembershipParams,
         Memberships::SaveRecord
       ]
     end

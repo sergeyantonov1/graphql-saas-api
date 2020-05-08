@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Invitations
-  class CheckInvitee
+  class CheckInviteeExistence
     include Interactor
 
     delegate :invitee, :company, to: :context
@@ -11,7 +11,7 @@ module Invitations
     def call
       return if invitee.blank?
 
-      context.fail!(error_message) if invitee_already_invited?
+      context.fail!(error: error_message) if invitee_already_invited?
     end
 
     private

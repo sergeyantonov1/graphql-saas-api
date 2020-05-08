@@ -4,10 +4,12 @@ module Invitations
   class SaveRecord
     include Interactor
 
-    delegate :invitation_params, to: :context
+    delegate :invitation, :invitation_params, to: :context
 
     def call
       return if invitation_params.blank?
+
+      context.invitation ||= build_invitation
 
       context.fail!(error: error_message) unless save_invitation
     end
@@ -18,8 +20,8 @@ module Invitations
       invitation.update(invitation_params)
     end
 
-    def invitation
-      context.invitation || Invitation.new
+    def build_invitation
+      Invitation.new
     end
 
     def error_message

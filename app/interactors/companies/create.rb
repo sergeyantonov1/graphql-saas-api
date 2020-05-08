@@ -6,7 +6,7 @@ module Companies
     include TransactionalInteractor
 
     organize Companies::SaveRecord,
-      Memberships::PrepareOwnerParams,
+      Companies::CreateCompany::PrepareMembershipParams,
       Memberships::SaveRecord
   end
 end

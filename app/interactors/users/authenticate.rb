@@ -23,7 +23,7 @@ module Users
     end
 
     def error_message
-      "Invalid credentials"
+      I18n.t("errors.messages.invalid_credentials")
     end
   end
 end

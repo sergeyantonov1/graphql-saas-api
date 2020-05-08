@@ -30,7 +30,7 @@ describe Mutations::CreateCompany do
   context "when authenticated user" do
     it_behaves_like :graphql_request, "create company" do
       let(:schema_context) { { current_user: user } }
-      let(:fixture_path) { "json/graphql/mutations/create_company_by_authenticated_user.json" }
+      let(:fixture_path) { "json/graphql/mutations/create_company.json" }
     end
   end
 

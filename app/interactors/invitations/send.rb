@@ -1,13 +1,15 @@
 # frozen_string_literal: true
 
-class Send
-  include Interactor::Organizer
-  include TransactionalInteractor
+module Invitations
+  class Send
+    include Interactor::Organizer
+    include TransactionalInteractor
 
-  organize Invitations::FindInvitee,
-    Invitations::CheckAvailability,
-    Invitations::GenerateToken,
-    Invitations::SendInvitation::PrepareParams,
-    Invitations::SaveRecord,
-    Invitations::SendEmail
+    organize Invitations::FindInvitee,
+      Invitations::CheckInviteeExistence,
+      Invitations::GenerateToken,
+      Invitations::SendInvitation::PrepareParams,
+      Invitations::SaveRecord,
+      Invitations::SendInvitationEmail
+  end
 end

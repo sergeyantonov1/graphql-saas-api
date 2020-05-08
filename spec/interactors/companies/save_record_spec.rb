@@ -12,7 +12,14 @@ describe Companies::SaveRecord do
     }
   end
 
+  let(:company) { nil }
   let(:company_params) do
+    {
+      name: "Company name"
+    }
+  end
+
+  let(:expected_attributes) do
     {
       name: "Company name"
     }
@@ -23,40 +30,23 @@ describe Companies::SaveRecord do
   end
 
   describe ".call" do
-    context "when new company" do
-      let(:company) { nil }
+    it "creates company" do
+      expect { interactor.run }.to change(Company, :count).by(1)
 
-      let(:expected_attributes) do
-        {
-          name: "Company name"
-        }
-      end
-
-      it "creates company" do
-        expect { executed_context }.to change(Company, :count).by(1)
-
-        expect(Company.last).to have_attributes(expected_attributes)
-      end
+      expect(context.company).to have_attributes(expected_attributes)
     end
 
-    context "when existed company" do
+    context "when company exists" do
       let!(:company) { create :company }
 
-      let(:expected_attributes) do
-        {
-          name: "Company name"
-        }
-      end
-
       it "updates company" do
-        expect { executed_context }.not_to change(Company, :count)
+        expect { interactor.run }.not_to change(Company, :count)
 
-        expect(Company.last).to have_attributes(expected_attributes)
+        expect(context.company).to have_attributes(expected_attributes)
       end
     end
 
     context "when invalid params" do
-      let(:company) { build :company }
       let(:company_params) { { name: nil } }
 
       let(:error_message) { "Name can't be blank" }
