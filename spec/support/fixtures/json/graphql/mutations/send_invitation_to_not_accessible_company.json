@@ -4,16 +4,16 @@
   },
   "errors": [
     {
-      "code": "record_not_found",
+      "code": 401,
       "locations": [
         {
           "column": 9,
           "line": 2
         }
       ],
-      "message": "Company not found or accessible",
+      "message": "Access denied",
       "path": ["sendInvitation"],
-      "status": 404
+      "status": "unauthorized"
     }
   ]
 }

@@ -3,11 +3,18 @@
 module Mutations
   class SendInvitation < BaseMutation
     include AuthenticableApiUser
+    include AuthorizableResource
 
     argument :email, String, required: true
     argument :company_id, Integer, required: true
 
     type Types::Payloads::SendInvitationType
+
+    def authorized?(**params)
+      return true if current_user.own_companies.exists?(params[:company_id])
+
+      raise access_denied_error
+    end
 
     def resolve(**params)
       @params = params
@@ -28,7 +35,7 @@ module Mutations
     end
 
     def company
-      current_user.companies.find(params[:company_id])
+      current_user.own_companies.find(params[:company_id])
     end
   end
 end

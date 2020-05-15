@@ -8,6 +8,8 @@ class User < ApplicationRecord
 
   has_many :memberships, dependent: :destroy
   has_many :companies, through: :memberships
+  has_many :own_memberships, -> { owner }, class_name: "Membership"
+  has_many :own_companies, through: :own_memberships, source: :company
 
   validates :password, confirmation: true
   validates :password_confirmation, presence: true, on: :create

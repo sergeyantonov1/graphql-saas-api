@@ -18,6 +18,6 @@ class GraphqlSaasApiSchema < GraphQL::Schema
 
     error_message = I18n.t("errors.messages.record_not_found", model_name: model_name)
 
-    GraphQL::ExecutionError.new(error_message, options: { status: 404, code: :record_not_found })
+    GraphQL::ExecutionError.new(error_message, options: { status: :record_not_found, code: 404 })
   end
 end

@@ -5,7 +5,7 @@
   },
   "errors": [
     {
-      "code": "unprocessable_entity",
+      "code": 422,
       "locations": [
         {
           "column": 9,
@@ -14,7 +14,7 @@
       ],
       "message": "The user already invited to Flatstack",
       "path": ["sendInvitation"],
-      "status": 422
+      "status": "unprocessable_entity"
     }
   ]
 }
