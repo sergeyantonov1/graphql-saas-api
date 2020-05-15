@@ -1,0 +1,19 @@
+{
+  "data": {
+    "sendInvitation": null
+  },
+  "errors": [
+    {
+      "code": 401,
+      "locations": [
+        {
+          "column": 9,
+          "line": 2
+        }
+      ],
+      "message": "Unauthorized error",
+      "path": ["sendInvitation"],
+      "status": "unauthorized"
+    }
+  ]
+}

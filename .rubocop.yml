@@ -21,6 +21,9 @@ Style/StringLiterals:
 Layout/ArgumentAlignment:
   EnforcedStyle: with_fixed_indentation
 
+Layout/HashAlignment:
+  EnforcedLastArgumentHashStyle: ignore_implicit
+
 Layout/LineLength:
   Max: 120
 
