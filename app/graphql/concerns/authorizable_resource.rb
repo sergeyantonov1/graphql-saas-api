@@ -12,8 +12,4 @@ module AuthorizableResource
   def access_denied_error
     GraphQL::ExecutionError.new("Access denied", options: { status: :unauthorized, code: 401 })
   end
-
-  def current_user
-    @current_user ||= context[:current_user]
-  end
 end
