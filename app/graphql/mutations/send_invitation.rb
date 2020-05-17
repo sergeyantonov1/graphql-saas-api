@@ -5,7 +5,7 @@ module Mutations
     include AuthenticableApiUser
     include AuthorizableResource
 
-    authorize :company, through: :company
+    authorize :company
 
     argument :email, String, required: true
     argument :company_id, ID, required: true, loads: Types::CompanyType
