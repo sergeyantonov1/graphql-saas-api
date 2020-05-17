@@ -20,4 +20,12 @@ class GraphqlSaasApiSchema < GraphQL::Schema
 
     GraphQL::ExecutionError.new(error_message, options: { status: :record_not_found, code: 404 })
   end
+
+  def self.id_from_object(object, _type, _context)
+    object.to_global_id.to_s
+  end
+
+  def self.object_from_id(global_id, _context)
+    GlobalID::Locator.locate(global_id)
+  end
 end

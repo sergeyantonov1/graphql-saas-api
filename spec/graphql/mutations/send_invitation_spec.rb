@@ -9,7 +9,7 @@ describe Mutations::SendInvitation do
         sendInvitation(
           input: {
             email: "user@example.com",
-            companyId: 123123
+            companyId: "#{company_global_id}"
           }
         ) {
           token
@@ -21,38 +21,39 @@ describe Mutations::SendInvitation do
 
   let(:current_user) { create :user }
   let(:company) { create :company, id: 123_123, name: "Flatstack" }
+  let(:company_global_id) { company.to_global_id.to_s }
 
   before do
     allow(Digest::MD5).to receive(:hexdigest).and_return("some_token")
-
-    create :membership, company: company, user: current_user, role: :owner
   end
 
   context "when authenticated user" do
     it_behaves_like :graphql_request, "send invitation" do
       let(:schema_context) { { current_user: current_user } }
-      let(:fixture_path) { "json/graphql/mutations/send_invitation.json" }
+      let(:fixture_path) { "json/graphql/mutations/send_invitation_to_not_accessible_company.json" }
     end
 
-    context "when user already invited" do
-      let(:user) { create :user, email: "user@example.com" }
-
+    context "when current user has permissions" do
       before do
-        create :membership, company: company, user: user, role: :member
+        create :membership, company: company, user: current_user, role: :owner
       end
 
       it_behaves_like :graphql_request, "send invitation" do
         let(:schema_context) { { current_user: current_user } }
-        let(:fixture_path) { "json/graphql/mutations/send_invitation_to_invited_user.json" }
+        let(:fixture_path) { "json/graphql/mutations/send_invitation.json" }
       end
-    end
 
-    context "when company not accessible" do
-      let(:company) { create :company, id: 123_124 }
+      context "when user already invited" do
+        let(:user) { create :user, email: "user@example.com" }
 
-      it_behaves_like :graphql_request, "send invitation" do
-        let(:schema_context) { { current_user: current_user } }
-        let(:fixture_path) { "json/graphql/mutations/send_invitation_to_not_accessible_company.json" }
+        before do
+          create :membership, company: company, user: user, role: :member
+        end
+
+        it_behaves_like :graphql_request, "send invitation" do
+          let(:schema_context) { { current_user: current_user } }
+          let(:fixture_path) { "json/graphql/mutations/send_invitation_to_invited_user.json" }
+        end
       end
     end
   end

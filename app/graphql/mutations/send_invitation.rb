@@ -6,12 +6,12 @@ module Mutations
     include AuthorizableResource
 
     argument :email, String, required: true
-    argument :company_id, Integer, required: true
+    argument :company_id, ID, required: true, loads: Types::CompanyType
 
     type Types::Payloads::SendInvitationType
 
     def authorized?(**params)
-      return true if current_user.own_companies.exists?(params[:company_id])
+      return true if current_user.own_companies.exists?(params[:company].id)
 
       raise access_denied_error
     end
@@ -29,13 +29,9 @@ module Mutations
     def send_invitation
       @send_invitation ||= Invitations::Send.call(
         email: params[:email],
-        company: company,
+        company: params[:company],
         sender: current_user
       )
-    end
-
-    def company
-      current_user.own_companies.find(params[:company_id])
     end
   end
 end
