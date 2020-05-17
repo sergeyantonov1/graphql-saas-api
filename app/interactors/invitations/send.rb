@@ -5,8 +5,7 @@ module Invitations
     include Interactor::Organizer
     include TransactionalInteractor
 
-    organize Invitations::FindInvitee,
-      Invitations::CheckInviteeExistence,
+    organize Invitations::CheckInviteeExistence,
       Invitations::GenerateToken,
       Invitations::SendInvitation::PrepareParams,
       Invitations::SaveRecord

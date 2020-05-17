@@ -4,17 +4,23 @@ module Invitations
   class CheckInviteeExistence
     include Interactor
 
-    delegate :invitee, :company, to: :context
+    delegate :email, :company, to: :context
     delegate :users, :name, to: :company, prefix: true
     delegate :id, to: :invitee, prefix: true
 
     def call
       return if invitee.blank?
 
+      context.invitee = invitee
+
       context.fail!(error: error_message) if invitee_already_invited?
     end
 
     private
+
+    def invitee
+      @invitee ||= User.find_by(email: email)
+    end
 
     def invitee_already_invited?
       company_users.exists?(id: invitee_id)

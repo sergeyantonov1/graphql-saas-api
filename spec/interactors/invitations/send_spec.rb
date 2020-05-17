@@ -6,7 +6,6 @@ describe Invitations::Send do
   describe ".organized" do
     let(:expected_interactors) do
       [
-        Invitations::FindInvitee,
         Invitations::CheckInviteeExistence,
         Invitations::GenerateToken,
         Invitations::SendInvitation::PrepareParams,

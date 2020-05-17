@@ -7,25 +7,43 @@ describe Invitations::CheckInviteeExistence do
 
   let(:initial_context) do
     {
-      invitee: invitee,
+      email: email,
       company: company
     }
   end
 
-  let(:invitee) { create :user }
+  let(:email) { "user@example.com" }
   let(:company) { create :company, name: "Flatstack" }
 
   describe ".call" do
-    it_behaves_like :success_interactor
+    it "checks invitee existence" do
+      interactor.run
 
-    context "when user already invited to company" do
-      before do
-        create :membership, company: company, user: invitee
+      expect(context.success?).to be_truthy
+
+      expect(context.invitee).to be_nil
+    end
+
+    context "when invitee is exist" do
+      let!(:invitee) { create :user, email: "user@example.com" }
+
+      it "checks invitee existence" do
+        interactor.run
+
+        expect(context.success?).to be_truthy
+
+        expect(context.invitee).to eq(invitee)
       end
 
-      let(:error_message) { "The user already invited to Flatstack" }
+      context "when invitee already invited to company" do
+        before do
+          create :membership, company: company, user: invitee
+        end
 
-      it_behaves_like :failed_interactor
+        let(:error_message) { "The user already invited to Flatstack" }
+
+        it_behaves_like :failed_interactor
+      end
     end
   end
 end
