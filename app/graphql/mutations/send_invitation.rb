@@ -5,14 +5,18 @@ module Mutations
     include AuthenticableApiUser
     include AuthorizableResource
 
+    authorize :company, through: :company
+
     argument :email, String, required: true
     argument :company_id, ID, required: true, loads: Types::CompanyType
 
     type Types::Payloads::SendInvitationType
 
     def authorized?(**params)
-      return true if current_user.own_companies.exists?(params[:company].id)
+      @params = params
 
+      authorize! build_invitation, to: :create?
+    rescue ActionPolicy::Unauthorized
       raise access_denied_error
     end
 
@@ -29,9 +33,17 @@ module Mutations
     def send_invitation
       @send_invitation ||= Invitations::Send.call(
         email: params[:email],
-        company: params[:company],
+        company: company,
         sender: current_user
       )
+    end
+
+    def build_invitation
+      ::Invitation.new
+    end
+
+    def company
+      params[:company]
     end
   end
 end
