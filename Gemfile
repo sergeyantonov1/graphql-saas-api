@@ -7,6 +7,7 @@ ruby "2.6.3"
 gem "pg"
 gem "rails", "6.0.2.1"
 
+gem "action_policy-graphql"
 gem "bcrypt"
 gem "bootsnap", require: false
 gem "decent_exposure"

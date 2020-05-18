@@ -6,4 +6,5 @@ class Invitation < ApplicationRecord
   belongs_to :company
 
   validates :email, :token, :company, :sender, presence: true
+  validates :email, format: { with: Devise.email_regexp }
 end

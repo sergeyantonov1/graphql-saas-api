@@ -1,6 +1,7 @@
+
 {
   "data": {
-    "loginUser": null
+    "sendInvitation": null
   },
   "errors": [
     {
@@ -11,8 +12,8 @@
           "line": 2
         }
       ],
-      "message": "Invalid credentials",
-      "path": ["loginUser"],
+      "message": "The user already invited to Flatstack",
+      "path": ["sendInvitation"],
       "status": "unprocessable_entity"
     }
   ]

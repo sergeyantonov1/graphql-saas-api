@@ -6,7 +6,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
     :validatable, :jwt_authenticatable, jwt_revocation_strategy: self
 
-  has_many :companies
+  has_many :memberships, dependent: :destroy
+  has_many :companies, through: :memberships
+  has_many :own_memberships, -> { owner }, class_name: "Membership"
+  has_many :own_companies, through: :own_memberships, source: :company
 
   validates :password, confirmation: true
   validates :password_confirmation, presence: true, on: :create
