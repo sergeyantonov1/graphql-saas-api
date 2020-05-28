@@ -1,0 +1,15 @@
+{
+  "data":  {
+    "acceptInvitation": {
+      "membership": {
+        "role": "member",
+        "company": {
+          "name": "Flatstack"
+        },
+        "user": {
+          "email": "user@example.com"
+        }
+      }
+    }
+  }
+}
