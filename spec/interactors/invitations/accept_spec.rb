@@ -8,6 +8,7 @@ describe Invitations::Accept do
       [
         Invitations::FindRecord,
         Invitations::AcceptInvitation::PrepareParams,
+        Invitations::CheckInviteeExistence,
         Invitations::SaveRecord,
         Invitations::AcceptInvitation::PrepareUserParams,
         Users::SaveRecord,

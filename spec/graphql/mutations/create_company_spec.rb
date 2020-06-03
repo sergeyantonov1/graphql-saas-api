@@ -17,6 +17,10 @@ describe Mutations::CreateCompany do
               role
               user {
                 email
+                subscription {
+                  status
+                  stripeSubscriptionId
+                }
               }
             }
           }

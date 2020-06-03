@@ -10,7 +10,7 @@ module Subscriptions
       StripeResources::AttachCard,
       Subscriptions::CreateSubscription::PrepareParams,
       Subscriptions::SaveRecord
-      StripeResources::CreateSubscription,
+      StripeResources::CreateSubscription
 
   end
 end

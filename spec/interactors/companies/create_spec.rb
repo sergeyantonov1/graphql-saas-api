@@ -8,7 +8,9 @@ describe Companies::Create do
       [
         Companies::SaveRecord,
         Companies::CreateCompany::PrepareMembershipParams,
-        Memberships::SaveRecord
+        Memberships::SaveRecord,
+        Subscriptions::CreateFreeSubscription::PrepareParams,
+        Subscriptions::SaveRecord
       ]
     end
 

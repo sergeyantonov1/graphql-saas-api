@@ -15,5 +15,5 @@ class User < ApplicationRecord
 
   validates :password, confirmation: true
   validates :password_confirmation, presence: true, on: :create
-  validates :stripe_customer_id, uniqueness: true
+  validates :stripe_customer_id, uniqueness: true, allow_blank: true
 end
