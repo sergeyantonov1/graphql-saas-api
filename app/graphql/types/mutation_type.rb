@@ -7,5 +7,6 @@ module Types
     field :create_company, mutation: Mutations::CreateCompany
     field :send_invitation, mutation: Mutations::SendInvitation
     field :accept_invitation, mutation: Mutations::AcceptInvitation
+    field :create_subscription, mutation: Mutations::CreateSubscription
   end
 end

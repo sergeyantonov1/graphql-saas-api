@@ -25,6 +25,8 @@ module StripeResources
 
     def retrieve_customer
       Stripe::Customer.retrieve(user_stripe_customer_id) if user_stripe_customer_id.present?
+    rescue Stripe::StripeError
+      nil
     end
   end
 end

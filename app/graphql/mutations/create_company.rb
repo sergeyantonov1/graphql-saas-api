@@ -18,14 +18,9 @@ module Mutations
 
     def create_company(params)
       Companies::Create.call(
-        company: build_company,
         company_params: params,
         user: current_user
       )
-    end
-
-    def build_company
-      ::Company.new
     end
   end
 end
