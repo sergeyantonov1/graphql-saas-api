@@ -8,7 +8,7 @@ module StripeResources
     delegate :id, to: :stripe_customer, prefix: true
 
     def call
-      context.stripe_subsription = create_subscription
+      context.stripe_subscription = create_subscription
     rescue Stripe::StripeError => e
       context.fail!(error: e.message)
     end
@@ -18,7 +18,8 @@ module StripeResources
     def create_subscription
       Stripe::Subscription.create(
         customer: stripe_customer_id,
-        items: subscription_items
+        items: subscription_items,
+        billing_cycle_anchor: 1.day.since.to_i
       )
     end
 

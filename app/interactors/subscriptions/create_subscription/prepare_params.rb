@@ -17,10 +17,13 @@ module Subscriptions
 
       def subscription_params
         {
-          stripe_subscription_id: stripe_subscription_id,
           user_id: user_id,
-          status: stripe_subscription_status
+          status: status
         }
+      end
+
+      def status
+        "active"
       end
     end
   end
