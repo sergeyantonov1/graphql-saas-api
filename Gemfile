@@ -19,6 +19,7 @@ gem "interactor"
 gem "puma"
 gem "rubocop"
 gem "sidekiq"
+gem "stripe"
 
 group :development do
   gem "listen"
