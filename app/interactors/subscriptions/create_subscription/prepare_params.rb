@@ -5,11 +5,11 @@ module Subscriptions
     class PrepareParams
       include Interactor
 
-      delegate :user, :stripe_subscription, to: :context
-      delegate :id, :status, to: :stripe_subscription, prefix: true
-      delegate :id, to: :user, prefix: true
+      delegate :user, to: :context
+      delegate :id, :subscription, to: :user, prefix: true
 
       def call
+        context.subscription = user_subscription
         context.subscription_params = subscription_params
       end
 
@@ -23,7 +23,7 @@ module Subscriptions
       end
 
       def status
-        "active"
+        :active
       end
     end
   end

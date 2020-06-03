@@ -8,8 +8,8 @@ describe Mutations::CreateSubscription do
       mutation {
         createSubscription(
           input: {
-            stripeToken: "test_stripe_card_token",
-            stripePriceToken: "test_stripe_price_token"
+            stripeToken: "#{stripe_token}",
+            stripePriceToken: "#{stripe_price_token}"
           }
         ) {
           subscription {
@@ -20,10 +20,31 @@ describe Mutations::CreateSubscription do
     GRAPHQL
   end
 
-  let(:user) { create :user, email: "user@example.com" }
+  let(:user) { create :user, email: "user@example.com", stripe_customer_id: nil, subscription: subscription }
+  let(:subscription) { create :subscription, stripe_subscription_id: nil, status: :inactive }
+
+  let(:stripe_token) { "tok_visa" }
+  let(:stripe_price_token) { "price_123" }
+
+  let(:stripe_customer_resource) { double id: "cus_123" }
+  let(:stripe_subscription_params) do
+    {
+      customer: "cus_123",
+      items: [
+        {
+          price: "price_123"
+        }
+      ],
+      metadata: {
+        subscription_id: subscription.id
+      }
+    }
+  end
 
   before do
-    allow(Stripe::Customer)
+    allow(Stripe::Customer).to receive(:create).with(email: "user@example.com").and_return(stripe_customer_resource)
+    allow(Stripe::Customer).to receive(:update).with(stripe_customer_resource.id, source: stripe_token)
+    allow(Stripe::Subscription).to receive(:create).with(stripe_subscription_params)
   end
 
   context "when authenticated user" do

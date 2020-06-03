@@ -1,5 +1,9 @@
 {
-  "subscription": {
-    "status": "active"
+  "data": {
+    "createSubscription": {
+      "subscription": {
+        "status": "active"
+      }
+    }
   }
 }
