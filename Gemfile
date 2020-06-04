@@ -20,6 +20,7 @@ gem "puma"
 gem "rubocop"
 gem "sidekiq"
 gem "stripe"
+gem "stripe_event"
 
 group :development do
   gem "listen"

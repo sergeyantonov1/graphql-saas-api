@@ -18,7 +18,7 @@ module Subscriptions
       def subscription_params
         {
           user_id: user_id,
-          status: status
+          status: :free
         }
       end
 

@@ -3,9 +3,9 @@
 class Subscription < ApplicationRecord
   extend Enumerize
 
-  AVAILABLE_STATUSES = %i(active inactive).freeze
+  AVAILABLE_STATUSES = %i(free paid).freeze
 
-  enumerize :status, in: AVAILABLE_STATUSES, predicates: true, scope: :shallow
+  enumerize :status, in: AVAILABLE_STATUSES, predicates: true, scope: :shallow, default: :free
 
   belongs_to :user
 
