@@ -9,7 +9,7 @@
             "user": {
               "email": "user@example.com",
               "subscription": {
-                "status": "inactive",
+                "status": "free",
                 "stripeSubscriptionId": null
               }
             }

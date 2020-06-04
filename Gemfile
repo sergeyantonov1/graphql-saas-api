@@ -39,5 +39,6 @@ end
 group :test do
   gem "database_cleaner-active_record"
   gem "simplecov", require: false
+  gem "stripe-ruby-mock", require: "stripe_mock"
   gem "timecop"
 end

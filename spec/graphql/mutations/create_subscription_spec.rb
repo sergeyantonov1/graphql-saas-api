@@ -21,7 +21,7 @@ describe Mutations::CreateSubscription do
   end
 
   let(:user) { create :user, email: "user@example.com", stripe_customer_id: nil, subscription: subscription }
-  let(:subscription) { create :subscription, stripe_subscription_id: nil, status: :inactive }
+  let(:subscription) { create :subscription, stripe_subscription_id: nil, status: :free }
 
   let(:stripe_token) { "tok_visa" }
   let(:stripe_price_token) { "price_123" }

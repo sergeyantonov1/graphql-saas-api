@@ -11,6 +11,5 @@ module Subscriptions
       Subscriptions::CreateSubscription::PrepareParams,
       Subscriptions::SaveRecord,
       StripeResources::CreateSubscription
-
   end
 end

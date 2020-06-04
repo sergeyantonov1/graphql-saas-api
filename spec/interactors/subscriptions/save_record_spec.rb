@@ -15,18 +15,17 @@ describe Subscriptions::SaveRecord do
   let(:subscription) { nil }
   let(:subscription_params) do
     {
-      status: :inactive,
+      status: :paid,
       user_id: user.id,
       stripe_subscription_id: "sub_123"
     }
   end
 
-  let(:company) { create :company }
   let(:user) { create :user }
 
   let(:expected_attributes) do
     {
-      status: "inactive",
+      status: "paid",
       user_id: user.id,
       stripe_subscription_id: "sub_123"
     }
@@ -40,7 +39,7 @@ describe Subscriptions::SaveRecord do
     end
 
     context "when subscription exists" do
-      let!(:subscription) { create :subscription, status: :active, user: user, stripe_subscription_id: nil }
+      let!(:subscription) { create :subscription, status: :free, user: user, stripe_subscription_id: nil }
 
       it "updates subscription" do
         expect { interactor.run }.not_to change(Subscription, :count)

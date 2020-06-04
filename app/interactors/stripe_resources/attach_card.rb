@@ -8,7 +8,7 @@ module StripeResources
     delegate :id, to: :stripe_customer, prefix: true
 
     def call
-      context.stripe_card = attach_card
+      attach_card
     rescue Stripe::StripeError => e
       context.fail!(error: e.message)
     end

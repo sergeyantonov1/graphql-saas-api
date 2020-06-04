@@ -11,7 +11,6 @@ module StripeHandlers
       activate_subscription! if active_stripe_subscription?
     rescue ActiveRecord::ActiveRecordError => e
       context.fail!(error: e.message)
-    rescue
     end
 
     private

@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe Subscriptions::CreateFreeSubscription::PrepareParams do
+describe Subscriptions::CreateSubscription::PrepareParams do
   include_context :interactor
 
   let(:initial_context) do
@@ -15,7 +15,7 @@ describe Subscriptions::CreateFreeSubscription::PrepareParams do
 
   let(:expected_subscription_params) do
     {
-      status: :inactive,
+      status: :free,
       user_id: user.id
     }
   end

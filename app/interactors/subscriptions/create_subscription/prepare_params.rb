@@ -18,12 +18,12 @@ module Subscriptions
       def subscription_params
         {
           user_id: user_id,
-          status: :free
+          status: status
         }
       end
 
       def status
-        :active
+        :free
       end
     end
   end
