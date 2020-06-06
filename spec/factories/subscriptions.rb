@@ -4,6 +4,6 @@ FactoryBot.define do
   factory :subscription do
     user
     stripe_subscription_id { nil }
-    status { "inactive" }
+    status { "free" }
   end
 end

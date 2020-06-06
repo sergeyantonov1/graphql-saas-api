@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-describe StripeResources::AttachCard, :stub_stripe do
+describe StripeResources::AttachCard do
   include_context :interactor
 
   let(:initial_context) do
@@ -12,17 +12,23 @@ describe StripeResources::AttachCard, :stub_stripe do
     }
   end
 
-  let(:stripe_customer) { Stripe::Customer.create(email: "user@example.com") }
-  let(:stripe_token) { stripe_helper.generate_card_token }
+  let(:stripe_customer) { double id: "cus_123" }
+  let(:stripe_token) { "tok_visa" }
 
   before do
-    StripeMock.prepare_error(:card_declined, :verify_source)
+    allow(Stripe::Customer).to receive(:update)
   end
 
   describe "#call" do
     it_behaves_like :success_interactor
 
-    context "when invalid source" do
+    it "attaches card" do
+      expect(Stripe::Customer).to receive(:update).with(stripe_customer.id, source: stripe_token)
+
+      interactor.run
+    end
+
+    context "with stripe error" do
       let(:stripe_error) { Stripe::StripeError.new("Error message") }
 
       let(:error) { "Error message" }

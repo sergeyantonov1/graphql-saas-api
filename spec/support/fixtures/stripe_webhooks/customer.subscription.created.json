@@ -1,0 +1,16 @@
+{
+  "created": 1326853478,
+  "livemode": false,
+  "id": "evt_00000000000000",
+  "type": "customer.subscription.created",
+  "status": "paid",
+  "object": "event",
+  "data": {
+    "object": {
+      "id": :id,
+      "object": "subscription",
+      "metadata": :metadata,
+      "status": :status
+    }
+  }
+}
