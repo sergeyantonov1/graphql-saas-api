@@ -19,7 +19,6 @@ describe Mutations::CreateCompany do
                 email
                 subscription {
                   status
-                  stripeSubscriptionId
                 }
               }
             }

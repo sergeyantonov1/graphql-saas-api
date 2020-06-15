@@ -14,6 +14,9 @@ describe Mutations::CreateSubscription do
         ) {
           subscription {
             status
+            user {
+              email
+            }
           }
         }
       }

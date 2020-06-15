@@ -3,6 +3,6 @@
 module Types
   class SubscriptionType < Types::BaseObject
     field :status, String, null: false
-    field :stripe_subscription_id, String, null: true
+    field :user, Types::UserType, null: false
   end
 end
