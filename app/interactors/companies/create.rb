@@ -7,6 +7,8 @@ module Companies
 
     organize Companies::SaveRecord,
       Companies::CreateCompany::PrepareMembershipParams,
-      Memberships::SaveRecord
+      Memberships::SaveRecord,
+      Subscriptions::CreateSubscription::PrepareParams,
+      Subscriptions::SaveRecord
   end
 end

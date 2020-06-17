@@ -19,6 +19,8 @@ gem "interactor"
 gem "puma"
 gem "rubocop"
 gem "sidekiq"
+gem "stripe"
+gem "stripe_event"
 
 group :development do
   gem "listen"
@@ -37,5 +39,7 @@ end
 group :test do
   gem "database_cleaner-active_record"
   gem "simplecov", require: false
+  gem "stripe-ruby-mock", require: "stripe_mock"
   gem "timecop"
+  gem "webmock"
 end

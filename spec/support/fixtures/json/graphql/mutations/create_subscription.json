@@ -1,0 +1,12 @@
+{
+  "data": {
+    "createSubscription": {
+      "subscription": {
+        "status": "free",
+        "user": {
+          "email": "user@example.com"
+        }
+      }
+    }
+  }
+}

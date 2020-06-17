@@ -1,0 +1,13 @@
+{
+  "id": "evt_00000000000000",
+  "type": "customer.subscription.created",
+  "object": "event",
+  "data": {
+    "object": {
+      "id": :id,
+      "object": "subscription",
+      "metadata": :metadata,
+      "status": :status
+    }
+  }
+}

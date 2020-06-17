@@ -2,15 +2,17 @@
 
 require "rails_helper"
 
-describe Companies::Create do
+describe Subscriptions::Create do
   describe ".organized" do
     let(:expected_interactors) do
       [
-        Companies::SaveRecord,
-        Companies::CreateCompany::PrepareMembershipParams,
-        Memberships::SaveRecord,
+        StripeResources::FindOrCreateCustomer,
+        Subscriptions::CreateSubscription::PrepareUserParams,
+        Users::SaveRecord,
+        StripeResources::AttachCard,
         Subscriptions::CreateSubscription::PrepareParams,
-        Subscriptions::SaveRecord
+        Subscriptions::SaveRecord,
+        StripeResources::CreateSubscription
       ]
     end
 
